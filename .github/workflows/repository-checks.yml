@@ -1,0 +1,25 @@
+name: Repository Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate research governance files
+        run: |
+          test -f README.md
+          test -f CLAUDE.md
+          test -f docs/PROJECT_STATUS.md
+          test -f docs/decisions/DECISION_LOG.md
+          test -f docs/requirements/REQUIREMENTS_TRACEABILITY.md
+          test -f docs/requirements/RISK_REGISTER.md
+          test -f docs/validation/VALIDATION_LADDER.md
+          test -f docs/validation/CLAIM_EVIDENCE_MATRIX.md
+          echo "Repository governance structure validated."
